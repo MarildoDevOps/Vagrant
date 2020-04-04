@@ -11,3 +11,31 @@ vagrant --version
 
 mkdir /home/projects
 cd  /home/projects
+
+Default
+-------------------------------------
+Vagrant.configure("2") do |config|
+  config.vm.box = "centos/7"
+  config.vm.box_version = "1902.01"
+end
+--------------------------------------
+Personalizado
+# Vagrant Settings
+Vagrant.configure("2") do |config|
+  config.vm.box = "centos/7"
+  config.vm.box_check_update = false
+  config.vm.network "private_network", ip: "192.168.0.110"
+  config.vm.provision "shell", inline: <<-SHELL
+    echo  "Treinamento Ansible" > tmp/ansible.txt
+    apt update && apt upgrade -y
+    apt install screen net-tools -y
+  SHELL
+
+  #Virtualbox Settings
+  config.vm.provider "virtualbox" do |vb|
+    vb.gui = false
+    vb.name = "Centos-7"
+    vb.memory = "512"
+    vb.cpus = "1"
+  end
+end 
