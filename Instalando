@@ -1,0 +1,13 @@
+#Instala VT BOX CLI
+apt install virtualbox
+
+#Instala VT Grafico
+apt install virtualbox-qt
+
+#instala vagrant
+apt-get install vagrant
+
+vagrant --version
+
+mkdir /home/projects
+cd  /home/projects
